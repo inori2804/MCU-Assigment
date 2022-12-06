@@ -1,0 +1,33 @@
+/*
+ * pedestrian.c
+ *
+ *  Created on: Dec 6, 2022
+ *      Author: ADMIN
+ */
+
+#include "pedestrian.h"
+
+void fsm_pedestrian() {
+	switch (status4) {
+	case PEDESTRIAN_RUN_ALLOW:
+		HAL_GPIO_WritePin(L2_EN0_GPIO_Port, L2_EN0_GPIO_Pin, RESET);
+		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_GPIO_Pin, SET);
+		if (isTimer5Expired()) {
+			status4 = PEDESTRIAN_OFF;
+			clearTimer5();
+		}
+		break;
+	case PEDESTRIAN_RUN_NOT_ALLOW:
+		HAL_GPIO_WritePin(L2_EN0_GPIO_Port, L2_EN0_GPIO_Pin, SET);
+		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_GPIO_Pin, RESET);
+		if (isTimer5Expired()) {
+			status4 = PEDESTRIAN_OFF;
+			clearTimer5();
+		}
+		break;
+	case PEDESTRIAN_OFF:
+		HAL_GPIO_WritePin(L2_EN0_GPIO_Port, L2_EN0, RESET);
+		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_Pin, RESET);
+		break;
+	}
+}
