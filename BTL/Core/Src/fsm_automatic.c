@@ -49,12 +49,6 @@ void fsm1_automatic_run() {
 			clearTimer4();
 			setTimer1(100);
 		}
-		if (isButtonPressed(3)) {
-			status4 = PEDESTRIAN_RUN_ALLOW;
-			setTimer5(1000);
-//			writeMessage("go to buzzer");
-			setTimer6(1);
-		}
 		break;
 
 	case AUTO_GREEN:
@@ -86,12 +80,6 @@ void fsm1_automatic_run() {
 			clearTimer4();
 			setTimer1(100);
 		}
-		if (isButtonPressed(3)) {
-			status4 = PEDESTRIAN_RUN_NOT_ALLOW;
-			setTimer5(1000);
-//			writeMessage("go to buzzer");
-			setTimer6(1);
-		}
 		break;
 
 	case AUTO_YELLOW:
@@ -122,12 +110,6 @@ void fsm1_automatic_run() {
 			clearTimer3();
 			clearTimer4();
 			setTimer1(100);
-		}
-		if (isButtonPressed(3)) {
-			status4 = PEDESTRIAN_RUN_NOT_ALLOW;
-			setTimer5(1000);
-//			writeMessage("go to buzzer");
-			setTimer6(1);
 		}
 		break;
 

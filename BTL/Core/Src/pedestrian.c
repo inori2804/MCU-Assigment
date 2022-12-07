@@ -49,6 +49,18 @@ void fsm_pedestrian() {
 	case PEDESTRIAN_OFF:
 		HAL_GPIO_WritePin(L2_EN0_GPIO_Port, L2_EN0_Pin, RESET);
 		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_Pin, RESET);
+		if (isButtonPressed(3) && status1 != WAIT) {
+			if(status1 == AUTO_RED){
+				status4 = PEDESTRIAN_RUN_ALLOW;
+				setTimer5(1000);
+	//			writeMessage("go to buzzer");
+				setTimer6(1);
+			}
+			else {
+				status4 = PEDESTRIAN_RUN_NOT_ALLOW;
+				setTimer5(1000);
+			}
+		}
 		break;
 	}
 }
