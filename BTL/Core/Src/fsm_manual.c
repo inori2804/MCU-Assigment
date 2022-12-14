@@ -11,7 +11,6 @@ void fsm_modify_timer_control() {
 	switch (status3) {
 	case MODIFY_RED1:
 		//set mode to display
-		mode = 2;
 		if (isTimer1Expired()) {
 			setTimer1(50);
 			clearAllLed();
@@ -22,7 +21,7 @@ void fsm_modify_timer_control() {
 			}
 			toggleRed1();
 		}
-
+//		setRedLed1();
 		//check if user want to apply new duration1 and return auto mode
 		if (isButtonPressed(RETURN)) {
 			clearAllLed();
@@ -30,7 +29,6 @@ void fsm_modify_timer_control() {
 			red_duration1 = time_input * 100;
 			time_input = 1;
 			status3 = MODIFY_YELLOW1;
-//			writeMessage("yellow1");
 		}
 		//check if user want to increase time
 		if (isButtonPressed(INC_TIME) || isButtonPressed1s(INC_TIME)) {
@@ -53,13 +51,11 @@ void fsm_modify_timer_control() {
 			clearAllLed();
 			time_input = 1;
 			status3 = MODIFY_YELLOW1;
-//			writeMessage("yellow1");
 		}
 		break;
 
 	case MODIFY_YELLOW1:
 		//set mode to display
-		mode = 3;
 		if (isTimer1Expired()) {
 			setTimer1(50);
 			clearAllLed();
@@ -70,7 +66,7 @@ void fsm_modify_timer_control() {
 				toggleYellow2();
 			}
 		}
-
+//		setYellowLed1();
 		//check if user want to apply new duration1 and return auto mode
 		if (isButtonPressed(RETURN)) {
 			clearAllLed();
@@ -78,7 +74,6 @@ void fsm_modify_timer_control() {
 			yellow_duration1 = time_input * 100;
 			time_input = 1;
 			status3 = MODIFY_GREEN1;
-//			writeMessage("green1");
 		}
 
 		//check if user want to increase time
@@ -102,14 +97,13 @@ void fsm_modify_timer_control() {
 			clearAllLed();
 			time_input = 1;
 			status3 = MODIFY_GREEN1;
-//			writeMessage("green1");
 		}
 		break;
 
 	case MODIFY_GREEN1:
 
 		//set mode to display
-		mode = 4;
+//		mode = 4;
 		if (isTimer1Expired()) {
 			setTimer1(50);
 			clearAllLed();
@@ -127,7 +121,6 @@ void fsm_modify_timer_control() {
 			green_duration1 = time_input * 100;
 			time_input = 1;
 			status3 = MODIFY_RED2;
-//			writeMessage("red2");
 		}
 
 		//check if user want to increase time
@@ -151,14 +144,12 @@ void fsm_modify_timer_control() {
 			clearAllLed();
 			time_input = 1;
 			status3 = MODIFY_RED2;
-//			writeMessage("red2");
 		}
 		break;
 
 	case MODIFY_RED2:
 
 		//set mode to display
-		mode = 5;
 		if (isTimer1Expired()) {
 			setTimer1(50);
 			clearAllLed();
@@ -176,7 +167,6 @@ void fsm_modify_timer_control() {
 			red_duration2 = time_input * 100;
 			time_input = 1;
 			status3 = MODIFY_YELLOW2;
-//			writeMessage("yellow2");
 		}
 
 		//check if user want to increase time
@@ -200,13 +190,11 @@ void fsm_modify_timer_control() {
 			clearAllLed();
 			time_input = 1;
 			status3 = MODIFY_YELLOW2;
-//			writeMessage("yellow2");
 		}
 		break;
 
 	case MODIFY_YELLOW2:
 		//set mode to display
-		mode = 6;
 		if (isTimer1Expired()) {
 			setTimer1(50);
 			clearAllLed();
@@ -225,7 +213,6 @@ void fsm_modify_timer_control() {
 			yellow_duration2 = time_input * 100;
 			time_input = 1;
 			status3 = MODIFY_GREEN2;
-//			writeMessage("green2");
 		}
 
 		//check if user want to increase time
@@ -249,13 +236,11 @@ void fsm_modify_timer_control() {
 			clearAllLed();
 			time_input = 1;
 			status3 = MODIFY_GREEN2;
-//			writeMessage("green2");
 		}
 		break;
 
 	case MODIFY_GREEN2:
 		//set mode to display
-		mode = 7;
 		if (isTimer1Expired()) {
 			setTimer1(50);
 			clearAllLed();
@@ -277,7 +262,6 @@ void fsm_modify_timer_control() {
 			returnFlag2 = 1;
 			status3 = WAIT;
 			//set display pointer back to normal
-//			writeMessage("auto mode");
 		}
 
 		//check if user want to increase time
@@ -303,7 +287,6 @@ void fsm_modify_timer_control() {
 			returnFlag1 = 1;
 			returnFlag2 = 1;
 			status3 = WAIT;
-//			writeMessage("auto mode");
 			//set display pointer back to normal
 		}
 		break;

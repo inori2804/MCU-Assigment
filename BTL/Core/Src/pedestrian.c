@@ -14,13 +14,10 @@ void fsm_pedestrian() {
 		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_Pin, SET);
 		if (isTimer5Expired()) {
 			status4 = PEDESTRIAN_OFF;
-			__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,0);
-			writeMessage("we are in run allow");
 		}
 		if (isTimer6Expired()) {
 			if (timeCountdown1 <= 5) {
-				writeMessage("buzzer active");
-				__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,(6-timeCountdown1)*20);
+				__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,(5-timeCountdown1)*20);
 				setTimer6(100);
 			}
 		}
@@ -37,6 +34,7 @@ void fsm_pedestrian() {
 		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_Pin, RESET);
 		if (isTimer5Expired()) {
 			status4 = PEDESTRIAN_OFF;
+			__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,0);
 		}
 		if (status1 == AUTO_RED) {
 			status4 = PEDESTRIAN_RUN_ALLOW;
@@ -49,14 +47,14 @@ void fsm_pedestrian() {
 	case PEDESTRIAN_OFF:
 		HAL_GPIO_WritePin(L2_EN0_GPIO_Port, L2_EN0_Pin, RESET);
 		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_Pin, RESET);
-		if (isButtonPressed(3) && status1 != WAIT) {
-			if(status1 == AUTO_RED){
+		__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,0);
+		if (status1 != WAIT) {
+			if(status1 == AUTO_RED && isButtonPressed(3)){
 				status4 = PEDESTRIAN_RUN_ALLOW;
 				setTimer5(1000);
-	//			writeMessage("go to buzzer");
 				setTimer6(1);
 			}
-			else {
+			else if((status1 == AUTO_GREEN || status1 == AUTO_YELLOW) && isButtonPressed(3)) {
 				status4 = PEDESTRIAN_RUN_NOT_ALLOW;
 				setTimer5(1000);
 			}

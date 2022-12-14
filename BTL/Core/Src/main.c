@@ -117,17 +117,12 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  setTimer1(50);
 	while (1) {
-//		for(int i = 0; i < 100; i++){
-//			__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1, i);
-//			HAL_Delay(100);
-//		}
-//		HAL_Delay(100);
 		fsm1_automatic_run();
 		fsm2_automatic_run();
 		fsm_modify_timer_control();
 		fsm_pedestrian();
-//		testIO();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
