@@ -22,11 +22,11 @@ void fsm_pedestrian() {
 			}
 		}
 		if (status1 == AUTO_GREEN || status1 == AUTO_YELLOW) {
-			status4 = PEDESTRIAN_RUN_NOT_ALLOW;
+			status4 = PEDESTRIAN_RUN_NOT_ALLOW; //pedestrian led is red
 			__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,0);
 		}
 		if (isButtonPressed(3)) {
-			setTimer5(1000);
+			setTimer5(1000); //set time of pedestrian led to 10s again
 		}
 		break;
 	case PEDESTRIAN_RUN_NOT_ALLOW://Pedestrian led is red
@@ -36,12 +36,12 @@ void fsm_pedestrian() {
 			status4 = PEDESTRIAN_OFF;
 			__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,0);
 		}
-		if (status1 == AUTO_RED) {
-			status4 = PEDESTRIAN_RUN_ALLOW;
+		if (status1 == AUTO_RED) { //traffic led is red
+			status4 = PEDESTRIAN_RUN_ALLOW; //pedestrian led is green
 			setTimer6(100);
 		}
 		if (isButtonPressed(3)) {
-			setTimer5(1000);
+			setTimer5(1000); //set time of pedestrian led to 10s again
 		}
 		break;
 	case PEDESTRIAN_OFF: //turn off pedestrian led
