@@ -269,7 +269,7 @@ void fsm_modify_timer_control() {
 			time_input = (time_input + 1) % 100; //99 is the max value
 			if (time_input == 0)
 				time_input = 1; //1 is invalid value
-			writeMess(time_input);
+			writeMess(time_input); //send time input to uart
 		}
 
 		//decrease time
