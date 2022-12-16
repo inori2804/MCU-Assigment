@@ -21,13 +21,13 @@ void fsm1_automatic_run() {
 		//TODO
 		setRedLed1();
 		if (isTimer3Expired()) {
-			setTimer3(100);
-			timeCountdown1--;
-			writeMess(timeCountdown1);
+			setTimer3(100); //count 1s
+			timeCountdown1--; //red time decrease
+			writeMess(timeCountdown1); //wite message to uart
 		}
 		if (isTimer1Expired() == 1) {
-			setTimer1(green_duration1);
-			status1 = AUTO_GREEN;
+			setTimer1(green_duration1); // set to time of green
+			status1 = AUTO_GREEN; // go to auto green
 			setTimer3(100);
 			timeCountdown1 = green_duration1 / 100;
 		}
@@ -35,7 +35,7 @@ void fsm1_automatic_run() {
 			clearAllLed();
 			status1 = WAIT;
 			status2 = WAIT;
-			status3 = MODIFY_RED1;
+			status3 = MODIFY_RED1; //go to manual mode
 			clearTimer1();
 			clearTimer2();
 			clearTimer3();
