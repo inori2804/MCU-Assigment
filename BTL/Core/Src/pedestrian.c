@@ -1,3 +1,4 @@
+
 /*
  * pedestrian.c
  *
@@ -9,42 +10,42 @@
 
 void fsm_pedestrian() {
 	switch (status4) {
-	case PEDESTRIAN_RUN_ALLOW: //Pedestrian led is green
+	case PEDESTRIAN_RUN_ALLOW:
 		HAL_GPIO_WritePin(L2_EN0_GPIO_Port, L2_EN0_Pin, RESET);
 		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_Pin, SET);
 		if (isTimer5Expired()) {
-			status4 = PEDESTRIAN_OFF; //turn off pedestrian led
+			status4 = PEDESTRIAN_OFF;
 		}
-		if (isTimer6Expired()) { //turn on buzzer
+		if (isTimer6Expired()) {
 			if (timeCountdown1 <= 5) {
 				__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,(5-timeCountdown1)*20);
 				setTimer6(100);
 			}
 		}
 		if (status1 == AUTO_GREEN || status1 == AUTO_YELLOW) {
-			status4 = PEDESTRIAN_RUN_NOT_ALLOW; //pedestrian led is red
+			status4 = PEDESTRIAN_RUN_NOT_ALLOW;
 			__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,0);
 		}
 		if (isButtonPressed(3)) {
-			setTimer5(1000); //set time of pedestrian led to 10s again
+			setTimer5(1000);
 		}
 		break;
-	case PEDESTRIAN_RUN_NOT_ALLOW://Pedestrian led is red
+	case PEDESTRIAN_RUN_NOT_ALLOW:
 		HAL_GPIO_WritePin(L2_EN0_GPIO_Port, L2_EN0_Pin, SET);
 		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_Pin, RESET);
 		if (isTimer5Expired()) {
 			status4 = PEDESTRIAN_OFF;
 			__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,0);
 		}
-		if (status1 == AUTO_RED) { //traffic led is red
-			status4 = PEDESTRIAN_RUN_ALLOW; //pedestrian led is green
+		if (status1 == AUTO_RED) {
+			status4 = PEDESTRIAN_RUN_ALLOW;
 			setTimer6(100);
 		}
 		if (isButtonPressed(3)) {
-			setTimer5(1000); //set time of pedestrian led to 10s again
+			setTimer5(1000);
 		}
 		break;
-	case PEDESTRIAN_OFF: //turn off pedestrian led
+	case PEDESTRIAN_OFF:
 		HAL_GPIO_WritePin(L2_EN0_GPIO_Port, L2_EN0_Pin, RESET);
 		HAL_GPIO_WritePin(L2_EN1_GPIO_Port, L2_EN1_Pin, RESET);
 		__HAL_TIM_SetCompare(&htim3,TIM_CHANNEL_1,0);
@@ -59,6 +60,8 @@ void fsm_pedestrian() {
 				setTimer5(1000);
 			}
 		}
+		break;
+	default:
 		break;
 	}
 }
