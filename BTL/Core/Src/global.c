@@ -25,7 +25,6 @@ int yellow_duration2 = 200; //2 seconds
 int green_duration2  = 300; //3 seconds
 
 int time_input = 1;
-int mode = 1;
 
 int timeCountdown1 = 0;
 int timeCountdown2 = 0;

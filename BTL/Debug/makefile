@@ -63,8 +63,8 @@ all: main-build
 main-build: BTL.elf secondary-outputs
 
 # Tool invocations
-BTL.elf BTL.map: $(OBJS) $(USER_OBJS) D:\Subjects\MCU\ Document\Assigment\BTL\BTL\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BTL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Subjects\MCU Document\Assigment\BTL\BTL\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BTL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+BTL.elf BTL.map: $(OBJS) $(USER_OBJS) C:\Users\PC\Desktop\BTL\MCU-Assigment\BTL\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BTL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\PC\Desktop\BTL\MCU-Assigment\BTL\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BTL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

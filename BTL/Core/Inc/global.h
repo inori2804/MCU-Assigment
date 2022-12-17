@@ -51,7 +51,6 @@ extern int status3;
 extern int returnFlag1;
 extern int returnFlag2;
 
-extern int mode;
 extern int time_input;
 
 extern int red_duration1;
@@ -62,9 +61,6 @@ extern int red_duration2;
 extern int yellow_duration2;
 extern int green_duration2;
 
-extern int * set1;
-extern int * set2;
-
 extern int status4;
 extern int state;
 extern int state2;
@@ -73,7 +69,7 @@ extern int counter_toggle;
 
 void systemInit();
 void writeMess(int time);
-void writeMessage(char * str);
-extern char str[64];
+void writeMessage(char * str); // used for debugging
+extern char str[64];		   // debug message buffer
 
 #endif /* INC_GLOBAL_H_ */

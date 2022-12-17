@@ -25,7 +25,7 @@ static uint16_t counterForButtonPress1s[NO_OF_BUTTONS];
 
 //user definition input port and input pin
 #define INPUT_PORT GPIOA
-uint16_t buttonPin[NO_OF_BUTTONS] = { 0x2000, 0x4000, 0x8000 };
+//uint16_t buttonPin[NO_OF_BUTTONS] = { 0x2000, 0x4000, 0x8000 };
 
 void initButton() {
 	//clear all buffers, counters and flags
