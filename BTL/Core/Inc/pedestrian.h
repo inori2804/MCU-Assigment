@@ -11,7 +11,7 @@
 #include "main.h"
 #include "global.h"
 
-void fsm_pedestrian();
+void fsm_pedestrian(); //pedestrian fsm
 
 #endif /* INC_PEDESTRIAN_H_ */
 
