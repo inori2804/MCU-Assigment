@@ -60,5 +60,7 @@ void fsm_pedestrian() {
 			}
 		}
 		break;
+	default:
+		break;
 	}
 }
